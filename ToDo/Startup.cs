@@ -27,7 +27,7 @@ namespace ToDo
         {
 
             services.AddControllersWithViews();
-            string connectionString = "server=localhost;userid=coding_events;password=123;database=coding_events;";
+            string connectionString = "server=localhost;userid=todo;password=123;database=todo;";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
             services.AddDbContext<ToDoDbContext>(options => options.UseMySql(connectionString, serverVersion));
         }

@@ -48,3 +48,4 @@ C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\ref\ToDo.dll
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\ToDo.pdb
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\ToDo.genruntimeconfig.cache
+C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\Razor\Views\User\Add.cshtml.g.cs

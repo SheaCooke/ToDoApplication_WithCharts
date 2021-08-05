@@ -3,26 +3,38 @@
 *@
 @{
 }
+@model List<toDo>
 
-<div>
+<div class="box">
     <h3>High Priority Tasks</h3>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Description</th>
                 <th scope="col">Notes</th>
+                <th scope="col">Completed?</th>
 
             </tr>
 
         </thead>
         <tbody>
-          
-                <tr>
-                    <td></td>
-                    
-                </tr>
+            @foreach (var i in Model)
+            {
+                if (i.Priority == 0)
+                {
+                    <tr>
+                        <td>@i.Description</td>
+                        <td>@i.Notes</td>
+                        <td><a asp-controller="User" asp-action="Remove" asp-route-id="@i.Id">Completed</a></td>
 
-            
+                    </tr>
+
+                }
+
+            }
+
+
+
         </tbody>
 
 
@@ -40,13 +52,45 @@
 
 </div>
 
+<br />
 
 
-
-<div>
+<div class="box">
     <h3>Low Pirority Tasks</h3>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Completed?</th>
 
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                if (i.Priority != 0)
+                {
+                    <tr>
+                        <td>@i.Description</td>
+                        <td>@i.Notes</td>
+                        <td><a asp-controller="User" asp-action="Remove" asp-route-Id="@i.Id">Completed</a></td>
+
+                    </tr>
+
+                }
+
+            }
+
+
+
+        </tbody>
+
+
+
+    </table>
 
 
 
