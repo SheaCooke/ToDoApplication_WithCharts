@@ -10,6 +10,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Description</th>
                 <th scope="col">Notes</th>
                 <th scope="col">Completed?</th>
@@ -23,9 +24,10 @@
                 if (i.Priority == 0)
                 {
                     <tr>
+                        <td><a asp-controller="User" asp-action="Edit" asp-route-id="@i.Id">@i.Id</a></td>
                         <td>@i.Description</td>
                         <td>@i.Notes</td>
-                        <td><a asp-controller="User" asp-action="Remove" asp-route-id="@i.Id">Completed</a></td>
+                        <td><a asp-controller="User" asp-action="Remove" asp-route-id="@i.Id" id="button">Completed</a></td>
 
                     </tr>
 
@@ -61,6 +63,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Description</th>
                 <th scope="col">Notes</th>
                 <th scope="col">Completed?</th>
@@ -74,9 +77,10 @@
                 if (i.Priority != 0)
                 {
                     <tr>
+                        <td><a asp-controller="User" asp-action="Edit" asp-route-id="@i.Id">@i.Id</a></td>
                         <td>@i.Description</td>
                         <td>@i.Notes</td>
-                        <td><a asp-controller="User" asp-action="Remove" asp-route-Id="@i.Id">Completed</a></td>
+                        <td><a asp-controller="User" asp-action="Remove" asp-route-Id="@i.Id" id="button">Completed</a></td>
 
                     </tr>
 

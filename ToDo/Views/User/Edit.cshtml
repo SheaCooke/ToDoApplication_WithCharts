@@ -3,25 +3,26 @@
 *@
 @{
 }
-@using ToDo.ViewModel;
+@using ToDo.ViewModel
 @model AddToDoViewModel
 
+<h3>Edit Task</h3>
 
-<form method="post" asp-controller="User" asp-action="AddPost">
+<form method="post" asp-controller="User" asp-action="Edit">
+
     <lable asp-for="Description">Description</lable>
-    <input type="text" asp-for="Description" />
+    <input type="text" asp-for="Description" value="@ViewBag.edit.Description" />
     <span asp-validation-for="Description"></span>
 
     <label asp-for="Notes">Notes</label>
-    <input type="text" asp-for="Notes" />
+    <input type="text" asp-for="Notes" value="@ViewBag.edit.Notes"/>
 
     <label asp-for=" Priority">Priority</label>
-    <select asp-for="Priority" asp-items="Model.PriorityList" aria-label="Select Priority"></select>
+    <select asp-for="Priority" asp-items="@Model.PriorityList" ></select>
     <span asp-validation-for="Priority"></span>
 
 
-    <input type="submit"  value="Add ToDo" />
+    <input type="submit" value="Edit" />
 
 </form>
-
 
