@@ -17,6 +17,11 @@ namespace ToDo.Controllers
         {
             this._context = dbContext;
         }
+
+        private DateTime _dayCompleted;
+
+        private Dictionary<string, int> _completedByDay= new Dictionary<string, int> { { "friday", 3 } };
+
         public IActionResult Index()
         {
             return View(_context.ToDos.ToList());
@@ -54,7 +59,13 @@ namespace ToDo.Controllers
         [Route("Remove/{Id}")]
         public IActionResult Remove([FromRoute] int Id)
         {
-          
+            _dayCompleted = DateTime.Now;
+            if (_dayCompleted.DayOfWeek == DayOfWeek.Friday)
+            {
+                _completedByDay["friday"] += 1;
+            }
+
+
             _context.ToDos.Remove(_context.ToDos.Find(Id));
             _context.SaveChanges();
 
@@ -99,6 +110,33 @@ namespace ToDo.Controllers
             ViewBag.HighPri = _context.ToDos.Where(x => x.Priority == Priority.High).ToArray();
             ViewBag.LowPri = _context.ToDos.Where(x => x.Priority == Priority.Low).ToArray();
             ViewBag.DataPoints = _context.ToDos.ToArray();
+
+            List<toDo> listFriday = new List<toDo>();
+            foreach (var i in _context.ToDos)
+            {
+                if (i.DateCreated.DayOfWeek == DayOfWeek.Friday)
+                {
+                    listFriday.Add(i);
+                }
+            }
+
+            List<toDo> listSaturday = new List<toDo>();
+            foreach (var i in _context.ToDos)
+            {
+                if (i.DateCreated.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    listSaturday.Add(i);
+                }
+            }
+
+
+
+
+
+            ViewBag.Friday = listFriday;
+            ViewBag.Saturday = listSaturday;
+
+            ViewBag.completedByDay = _completedByDay;
             return View();
         }
         

@@ -15,7 +15,7 @@ namespace ToDo.Models
 
         public DateTime DateCreated { get; set; }
 
-        public DateTime DateCompleted { get; set; }
+       
 
         public toDo()
         {

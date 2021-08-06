@@ -10,7 +10,11 @@
     <title>Index</title>
 </head>
 <body>
-    <div id="chartContainer"></div>
+    <div id="chartContainer" style="width: 60%; height: 300px;display: inline-block;"></div>
+    <br /><br />
+    <div id="chartContainer2" style="width: 60%; height: 300px;display: inline-block;"></div>
+    <br /><br />
+    <div id="chartContainer3" style="width: 60%; height: 300px;display: inline-block;"></div>
 
     <script type="text/javascript">
 
@@ -39,16 +43,93 @@
 						{ y: @ViewBag.DataPoints.Length, label: "Total tasks remaining" },
 						{ y: @ViewBag.HighPri.Length, label: "High priority tasks remaining" },
 						{ y: @ViewBag.LowPri.Length, label: "Low priority tasks remaining"}
-				
+
 					]
-                                        
-					
+
+
 				}
 				]
 			});
-			chart.render();
+
+
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                axisY: {
+                    title: "Tasks added by day",
+                    interlacedColor: "#F8F1E4",
+                    tickLength: 10
+				},
+				axisX: {
+					title: "Day"
+                },
+				theme: "light2",
+				animationEnabled: true,
+				title: {
+					text: "Tasks Added By Day"
+				},
+				subtitles: [
+					{ text: "" }
+				],
+				data: [
+				{
+					type: "column", //change type to bar, line, area, pie, etc
+					dataPoints: [
+						{ y: @ViewBag.Friday.Count, label: "Friday" },
+						{ y: @ViewBag.Saturday.Count, label: "Saturday" }
+
+
+					]
+
+
+				}
+				]
+			});
+
+
+			var chart3 = new CanvasJS.Chart("chartContainer3", {
+                axisY: {
+                    title: "Tasks completed by day",
+                    interlacedColor: "#F8F1E4",
+                    tickLength: 10
+				},
+				axisX: {
+					title: "Day"
+                },
+				theme: "light2",
+				animationEnabled: true,
+				title: {
+					text: "Tasks Completed By Day"
+				},
+				subtitles: [
+					{ text: "" }
+				],
+				data: [
+				{
+					type: "column", //change type to bar, line, area, pie, etc
+					dataPoints: [
+						{ y: @ViewBag.completedByDay["friday"], label: "Friday" }
+						
+
+
+					]
+
+
+				}
+				]
+			});
+
+
+            chart.render();
+			chart2.render();
+            chart3.render();
+
+
+
 		};
     </script>
+
+
+
 
 </body>
 </html>			
