@@ -50,3 +50,5 @@ C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\ToDo.genruntimeconfig.cache
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\Razor\Views\User\Add.cshtml.g.cs
 C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\Razor\Views\User\Edit.cshtml.g.cs
+C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\bin\Debug\net5.0\System.Web.Helpers.dll
+C:\Users\Shea Cooke\Desktop\LaunchCode\C#_Web_Development\ToDo_Project\ToDo\ToDo\obj\Debug\net5.0\Razor\Views\User\Chart.cshtml.g.cs

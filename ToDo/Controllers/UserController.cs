@@ -37,7 +37,8 @@ namespace ToDo.Controllers
                 toDo newToDo = new toDo {
                     Description = addToDoViewModel.Description,
                     Priority = addToDoViewModel.Priority,
-                    Notes = addToDoViewModel.Notes
+                    Notes = addToDoViewModel.Notes,
+                    DateCreated = DateTime.Now
                 };
 
                 _context.Add(newToDo);
@@ -82,13 +83,23 @@ namespace ToDo.Controllers
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Description = addToDoViewModel.Description);
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Notes = addToDoViewModel.Notes);
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Priority = addToDoViewModel.Priority);
-
+                
                 _context.SaveChanges();
                 return Redirect("/User/Index");
             }
 
             ViewBag.edit = _context.ToDos.Find(Id);
             return View(addToDoViewModel);
+        }
+
+        
+
+        public IActionResult Chart()
+        {
+            ViewBag.HighPri = _context.ToDos.Where(x => x.Priority == Priority.High).ToArray();
+            ViewBag.LowPri = _context.ToDos.Where(x => x.Priority == Priority.Low).ToArray();
+            ViewBag.DataPoints = _context.ToDos.ToArray();
+            return View();
         }
         
 
