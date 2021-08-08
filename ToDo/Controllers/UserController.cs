@@ -106,6 +106,8 @@ namespace ToDo.Controllers
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Description = addToDoViewModel.Description);
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Notes = addToDoViewModel.Notes);
                 _context.ToDos.Where(x => x.Id == Id).ToList().ForEach(x => x.Priority = addToDoViewModel.Priority);
+
+                
                 
                 _context.SaveChanges();
                 return Redirect("/User/Index");
@@ -141,6 +143,20 @@ namespace ToDo.Controllers
 
 
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult ResetHistory()
+        {
+            foreach (var i in _context.Days.ToArray())
+            {
+                _context.Days.Remove(_context.Days.Find(i.DayId));
+                
+            }
+            _context.SaveChanges();
+
+            return Redirect("/User/Chart");
         }
         
 
