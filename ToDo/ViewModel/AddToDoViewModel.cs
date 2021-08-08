@@ -19,10 +19,25 @@ namespace ToDo.ViewModel
         public Priority Priority { get; set; }
         public string Notes { get; set; }
 
+        
+        [Required]
+        public int DayId { get; set; }
+
+        public /*DayOfWeek*/string DayModified { get; set; }
+
         public List<SelectListItem> PriorityList = new List<SelectListItem>
         {
             new SelectListItem(Priority.High.ToString(), ((int)Priority.High).ToString()),
             new SelectListItem(Priority.Low.ToString(), ((int)Priority.Low).ToString())
         };
+
+        public AddToDoViewModel(DayOfWeek today)
+        {
+            DayModified = today.ToString();
+        }
+
+        public AddToDoViewModel() { }
+
+
     }
 }

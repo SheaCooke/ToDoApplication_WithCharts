@@ -2,34 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDo.Data;
 
 namespace ToDo.Migrations
 {
     [DbContext(typeof(ToDoDbContext))]
-    partial class ToDoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210807030551_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.8");
-
-            modelBuilder.Entity("ToDo.Models.Day", b =>
-                {
-                    b.Property<int>("DayId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("DayModified")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("DayId");
-
-                    b.ToTable("Days");
-                });
 
             modelBuilder.Entity("ToDo.Models.toDo", b =>
                 {
@@ -39,9 +27,6 @@ namespace ToDo.Migrations
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int>("DayId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
@@ -54,25 +39,7 @@ namespace ToDo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DayId");
-
                     b.ToTable("ToDos");
-                });
-
-            modelBuilder.Entity("ToDo.Models.toDo", b =>
-                {
-                    b.HasOne("ToDo.Models.Day", "Day")
-                        .WithMany("toDos")
-                        .HasForeignKey("DayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Day");
-                });
-
-            modelBuilder.Entity("ToDo.Models.Day", b =>
-                {
-                    b.Navigation("toDos");
                 });
 #pragma warning restore 612, 618
         }

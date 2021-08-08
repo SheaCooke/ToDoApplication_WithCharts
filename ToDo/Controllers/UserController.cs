@@ -18,9 +18,9 @@ namespace ToDo.Controllers
             this._context = dbContext;
         }
 
-        private DateTime _dayCompleted;
+        
 
-        private Dictionary<string, int> _completedByDay= new Dictionary<string, int> { { "friday", 3 } };
+       
 
         public IActionResult Index()
         {
@@ -29,7 +29,9 @@ namespace ToDo.Controllers
 
         public IActionResult Add()
         {
-            AddToDoViewModel addToDoViewModel = new AddToDoViewModel();
+            DayOfWeek today = DateTime.Today.DayOfWeek;
+
+            AddToDoViewModel addToDoViewModel = new AddToDoViewModel(today);
 
             return View(addToDoViewModel);
         }
@@ -39,15 +41,23 @@ namespace ToDo.Controllers
         {
             if (ModelState.IsValid)
             {
+                Day newDay = new Day();
+
+
+
                 toDo newToDo = new toDo {
                     Description = addToDoViewModel.Description,
                     Priority = addToDoViewModel.Priority,
                     Notes = addToDoViewModel.Notes,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Day = newDay
                 };
 
                 _context.Add(newToDo);
                 _context.SaveChanges();
+
+          
+
                 return Redirect("Add");
 
             }
@@ -59,15 +69,15 @@ namespace ToDo.Controllers
         [Route("Remove/{Id}")]
         public IActionResult Remove([FromRoute] int Id)
         {
-            _dayCompleted = DateTime.Now;
-            if (_dayCompleted.DayOfWeek == DayOfWeek.Friday)
-            {
-                _completedByDay["friday"] += 1;
-            }
-
+       
 
             _context.ToDos.Remove(_context.ToDos.Find(Id));
+            _context.Days.Remove(_context.Days.Find(Id));
             _context.SaveChanges();
+
+            
+
+          
 
             return Redirect("/User/Index");
         }
@@ -111,6 +121,8 @@ namespace ToDo.Controllers
             ViewBag.LowPri = _context.ToDos.Where(x => x.Priority == Priority.Low).ToArray();
             ViewBag.DataPoints = _context.ToDos.ToArray();
 
+
+
             List<toDo> listFriday = new List<toDo>();
             foreach (var i in _context.ToDos)
             {
@@ -119,6 +131,8 @@ namespace ToDo.Controllers
                     listFriday.Add(i);
                 }
             }
+
+
 
             List<toDo> listSaturday = new List<toDo>();
             foreach (var i in _context.ToDos)
@@ -136,7 +150,7 @@ namespace ToDo.Controllers
             ViewBag.Friday = listFriday;
             ViewBag.Saturday = listSaturday;
 
-            ViewBag.completedByDay = _completedByDay;
+            //ViewBag.completedByDay = _completedByDay;
             return View();
         }
         

@@ -15,7 +15,13 @@ namespace ToDo.Models
 
         public DateTime DateCreated { get; set; }
 
-       
+
+
+        public Day Day { get; set; }
+
+        public int DayId { get; set; }
+
+
 
         public toDo()
         {

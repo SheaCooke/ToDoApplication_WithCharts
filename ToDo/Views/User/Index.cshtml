@@ -5,6 +5,7 @@
 }
 @model List<toDo>
 
+
 <div class="box">
     <h3>High Priority Tasks</h3>
     <table class="table">
@@ -29,6 +30,7 @@
                         <td>@i.Description</td>
                         <td>@i.Notes</td>
                         <td>@i.DateCreated</td>
+
                         <td><a asp-controller="User" asp-action="Remove" asp-route-id="@i.Id" id="button">Completed</a></td>
 
                     </tr>

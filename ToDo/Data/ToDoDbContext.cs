@@ -12,6 +12,8 @@ namespace ToDo.Data
 
         public DbSet<toDo> ToDos { get; set; }
 
+        public DbSet<Day> Days { get; set; }
+
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options) :base(options)
         {
 
