@@ -6,22 +6,24 @@
 @using ToDo.ViewModel;
 @model AddToDoViewModel
 
+<div class="box">
+    <br />
+    <form method="post" asp-controller="User" asp-action="AddPost">
+        <lable asp-for="Description">Description</lable>
+        <input type="text" asp-for="Description" />
+        <span asp-validation-for="Description"></span>
 
-<form method="post" asp-controller="User" asp-action="AddPost">
-    <lable asp-for="Description">Description</lable>
-    <input type="text" asp-for="Description" />
-    <span asp-validation-for="Description"></span>
+        <label asp-for="Notes">Notes</label>
+        <input type="text" asp-for="Notes" />
 
-    <label asp-for="Notes">Notes</label>
-    <input type="text" asp-for="Notes" />
-
-    <label asp-for=" Priority">Priority</label>
-    <select asp-for="Priority" asp-items="Model.PriorityList" aria-label="Select Priority"></select>
-    <span asp-validation-for="Priority"></span>
-
-
-    <input type="submit"  value="Add ToDo" />
-
-</form>
+        <label asp-for=" Priority">Priority</label>
+        <select asp-for="Priority" asp-items="Model.PriorityList" aria-label="Select Priority"></select>
+        <span asp-validation-for="Priority"></span>
 
 
+        <input type="submit" value="Add ToDo" />
+
+    </form>
+    <br />
+
+</div>

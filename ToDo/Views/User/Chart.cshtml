@@ -10,11 +10,11 @@
     <title>Index</title>
 </head>
 <body>
-    <div id="chartContainer" style="width: 60%; height: 300px;display: inline-block;"></div>
+    <div class="box" id="chartContainer" style="width: 60%; height: 300px;display: inline-block;"></div>
     <br /><br />
-    <div id="chartContainer2" style="width: 60%; height: 300px;display: inline-block;"></div>
+    <div class="box" id="chartContainer2" style="width: 60%; height: 300px;display: inline-block;"></div>
     <br /><br />
-    <div id="chartContainer3" style="width: 60%; height: 300px;display: inline-block;"></div>
+    <div class="box" id="chartContainer3" style="width: 60%; height: 300px;display: inline-block;"></div>
 
     <script type="text/javascript">
 
@@ -65,7 +65,7 @@
 				theme: "light2",
 				animationEnabled: true,
 				title: {
-					text: "Tasks Added By Day"
+					text: "User History: Tasks Added By Day"
 				},
 				subtitles: [
 					{ text: "" }
@@ -73,9 +73,15 @@
 				data: [
 				{
 					type: "column", //change type to bar, line, area, pie, etc
-					dataPoints: [
-						{ y: @ViewBag.Friday.Count, label: "Friday" },
-						{ y: @ViewBag.Saturday.Count, label: "Saturday" }
+						dataPoints: [
+							{ y: @ViewBag.Monday.Length, label: "Monday" },
+							{ y: @ViewBag.Tuesday.Length, label: "Tuesday" },
+							{ y: @ViewBag.Wednesday.Length, label: "Wednesday" },
+							{ y: @ViewBag.Thursday.Length, label: "Thursday" },
+							{ y: @ViewBag.Friday.Length, label: "Friday" },
+							{ y: @ViewBag.Saturday.Length, label: "Saturday" },
+						    { y: @ViewBag.Sunday.Length, label: "Sunday" }
+
 
 
 					]
@@ -98,17 +104,24 @@
 				theme: "light2",
 				animationEnabled: true,
 				title: {
-					text: "Tasks Completed By Day"
+					text: "User History: Tasks Completed By Day"
 				},
 				subtitles: [
 					{ text: "" }
 				],
 				data: [
 				{
-					type: "column", //change type to bar, line, area, pie, etc
-					dataPoints: [
-						{@* y: @ViewBag.completedByDay["friday"], label: "Friday"*@ }
-						
+					type: "pie", //change type to bar, line, area, pie, etc
+						dataPoints: [
+							{ y: @ViewBag.RemovedMon.Length, label: "Monday" },
+							{ y: @ViewBag.RemovedTue.Length, label: "Tuesday" },
+							{ y: @ViewBag.RemovedWed.Length, label: "Wednesday"},
+							{ y: @ViewBag.RemovedThu.Length, label: "Thursday"},
+							{ y: @ViewBag.RemovedFri.Length, label: "Friday" },
+							{ y: @ViewBag.RemovedSat.Length, label: "Saturday"},
+						    { y: @ViewBag.RemovedSun.Length, label: "Sunday" }
+
+
 
 
 					]

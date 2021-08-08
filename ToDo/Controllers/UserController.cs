@@ -69,10 +69,12 @@ namespace ToDo.Controllers
         [Route("Remove/{Id}")]
         public IActionResult Remove([FromRoute] int Id)
         {
+
+            Day removed = new Day($"Removed {DateTime.Today.DayOfWeek.ToString()}");
        
 
             _context.ToDos.Remove(_context.ToDos.Find(Id));
-            _context.Days.Remove(_context.Days.Find(Id));
+            _context.Days.Add(removed);
             _context.SaveChanges();
 
             
@@ -121,36 +123,23 @@ namespace ToDo.Controllers
             ViewBag.LowPri = _context.ToDos.Where(x => x.Priority == Priority.Low).ToArray();
             ViewBag.DataPoints = _context.ToDos.ToArray();
 
+            ViewBag.Monday = _context.Days.Where(x => x.DayModified == "Monday").ToArray();
+            ViewBag.Tuesday = _context.Days.Where(x => x.DayModified == "Tuesday").ToArray();
+            ViewBag.Wednesday = _context.Days.Where(x => x.DayModified == "Wednesday").ToArray();
+            ViewBag.Thursday = _context.Days.Where(x => x.DayModified == "Thursday").ToArray();
+            ViewBag.Friday = _context.Days.Where(x => x.DayModified == "Friday").ToArray();
+            ViewBag.Saturday = _context.Days.Where(x => x.DayModified == "Saturday").ToArray();
+            ViewBag.Sunday = _context.Days.Where(x => x.DayModified == "Sunday").ToArray();
+
+            ViewBag.RemovedMon = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Monday")).ToArray();
+            ViewBag.RemovedTue = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Tuesday")).ToArray();
+            ViewBag.RemovedWed = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Wednesday")).ToArray();
+            ViewBag.RemovedThu = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Thursday")).ToArray();
+            ViewBag.RemovedFri = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Friday")).ToArray();
+            ViewBag.RemovedSat = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Saturday")).ToArray();
+            ViewBag.RemovedSun = _context.Days.Where(x => x.DayModified.Contains("Removed") && x.DayModified.Contains("Sunday")).ToArray();
 
 
-            List<toDo> listFriday = new List<toDo>();
-            foreach (var i in _context.ToDos)
-            {
-                if (i.DateCreated.DayOfWeek == DayOfWeek.Friday)
-                {
-                    listFriday.Add(i);
-                }
-            }
-
-
-
-            List<toDo> listSaturday = new List<toDo>();
-            foreach (var i in _context.ToDos)
-            {
-                if (i.DateCreated.DayOfWeek == DayOfWeek.Saturday)
-                {
-                    listSaturday.Add(i);
-                }
-            }
-
-
-
-
-
-            ViewBag.Friday = listFriday;
-            ViewBag.Saturday = listSaturday;
-
-            //ViewBag.completedByDay = _completedByDay;
             return View();
         }
         

@@ -19,6 +19,10 @@ namespace ToDo.Models
             this.DayModified = DateTime.Today.DayOfWeek.ToString();
         }
 
+        public Day(string removed)
+        {
+            this.DayModified = removed;
+        }
 
     }
 

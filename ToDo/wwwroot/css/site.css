@@ -59,8 +59,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: linear-gradient( lightgray, lightblue);
 }
 .footer {
   position: absolute;
@@ -87,3 +88,4 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
